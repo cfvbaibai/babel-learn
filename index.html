@@ -1,0 +1,36 @@
+<html>
+
+<head>
+  <title>Test Calculator</title>
+</head>
+
+<body>
+  <div id="like_button_container"></div>
+  <script src="https://unpkg.com/react@17/umd/react.development.js" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js" crossorigin="anonymous"></script>
+  <script type="text/jsx">
+const componentScript = `
+const LikeButton = () => {
+  const [liked, setLiked] = React.useState(false);
+
+  if (liked) {
+    return "You liked this.";
+  }
+
+  return <button onClick={() => setLiked(true)}>Like Me!</button>;
+}
+
+const domContainer = document.querySelector("#like_button_container");
+ReactDOM.render(<LikeButton />, domContainer);
+`;
+
+const output = Babel.transform(componentScript, { presets: ['env', 'react'] }).code;
+console.log(output);
+
+eval(output);
+  </script>
+
+</body>
+
+</html>
